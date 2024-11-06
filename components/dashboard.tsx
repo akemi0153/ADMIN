@@ -7,7 +7,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { ClipboardCheck, Users, BarChart, Calendar, Waves, ChevronRight, Star, X } from 'lucide-react'
 import Link from 'next/link'
 
-export function PreviewDashboardComponent() {
+export function PreviewDashboard() {
   const [activeModal, setActiveModal] = useState<string | null>(null)
 
   const stats = [
@@ -183,7 +183,7 @@ export function PreviewDashboardComponent() {
           <CardFooter className="flex justify-center">
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button asChild size="lg" className="bg-gradient-to-r from-purple-600 to-teal-500 text-white">
-                <Link href="/inspector">View Inspections</Link>
+                <Link href="/inspections">View Inspections</Link>
               </Button>
             </motion.div>
           </CardFooter>
@@ -218,5 +218,3 @@ export function PreviewDashboardComponent() {
     </div>
   )
 }
-
-export default PreviewDashboardComponent;
