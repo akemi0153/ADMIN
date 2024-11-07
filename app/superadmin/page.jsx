@@ -55,12 +55,12 @@ const mockData = {
 export default function SuperAdminDashboard() {
   const [accommodations, setAccommodations] = useState(mockData.accommodations)
   const [inspectorLogs, setInspectorLogs] = useState(mockData.inspectorLogs)
-  const [sortConfig, setSortConfig] = useState<{ key: string | null, direction: 'ascending' | 'descending' }>({ key: null, direction: 'ascending' })
+  const [sortConfig, setSortConfig] = useState({ key: null, direction: 'ascending' })
   const [selectedMunicipality, setSelectedMunicipality] = useState('All')
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
-  const handleSort = (key: string) => {
-    let direction: 'ascending' | 'descending' = 'ascending'
+  const handleSort = (key) => {
+    let direction = 'ascending'
     if (sortConfig.key === key && sortConfig.direction === 'ascending') {
       direction = 'descending'
     }
@@ -69,8 +69,8 @@ export default function SuperAdminDashboard() {
 
   const sortedAccommodations = [...accommodations].sort((a, b) => {
     if (sortConfig.key === null) return 0
-    const aValue = a[sortConfig.key as keyof typeof a]
-    const bValue = b[sortConfig.key as keyof typeof b]
+    const aValue = a[sortConfig.key]
+    const bValue = b[sortConfig.key]
     if (aValue < bValue) return sortConfig.direction === 'ascending' ? -1 : 1
     if (aValue > bValue) return sortConfig.direction === 'ascending' ? 1 : -1
     return 0
@@ -195,7 +195,7 @@ export default function SuperAdminDashboard() {
                 </CardHeader>
                 <CardContent>
                   <ResponsiveContainer width="100%" height={200}>
-                    <LineChart data={mockData.growthData[municipality as keyof typeof mockData.growthData]}>
+                    <LineChart data={mockData.growthData[municipality]}>
                       <XAxis dataKey="month" />
                       <YAxis />
                       <Tooltip />

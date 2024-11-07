@@ -402,7 +402,7 @@ export default function AuroraDashboard() {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
-              {user && (
+            {user && (
                 <Image
                   src={municipalityLogos[user.municipality] || "/placeholder-logo.png"}
                   alt={`${user.municipality} logo`}
@@ -414,12 +414,15 @@ export default function AuroraDashboard() {
               {user && (
                 <div>
                   <h1 className="text-xl font-semibold text-gray-800 dark:text-white">
-                    {user.municipality} Inspector Dashboard
+                    {user.municipality === "Baler" && "Municipality of Baler"}
+                    {user.municipality === "Maria Aurora" && "Municipality of Maria Aurora"}
+                    {user.municipality === "San Luis" && "Municipality of San Luis"}
                   </h1>
                   <p className="text-sm text-gray-500 dark:text-gray-400">{user.name} - {currentTime.toLocaleString()}</p>
                 </div>
               )}
             </div>
+            {user && (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" className="relative h-8 w-8 rounded-full">
@@ -449,6 +452,7 @@ export default function AuroraDashboard() {
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
+             )}
           </div>
         </div>
       </header>
